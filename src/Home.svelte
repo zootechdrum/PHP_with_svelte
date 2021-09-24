@@ -7,7 +7,6 @@
         const response = await fetch(dateUrl);
         const data =  await response.json();
             console.log(data);
-        
         // items = data['articles'];
     }
 
