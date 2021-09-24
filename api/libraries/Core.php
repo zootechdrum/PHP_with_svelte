@@ -8,7 +8,6 @@ class Core
 {
   protected $currentController = 'Pages';
   protected $currentMethod = 'index';
-  protected $params = [];
 
   public function __construct()
   {
@@ -35,8 +34,7 @@ class Core
     }
     //If there is anything left in our Url after unsettting the current method and current controller then mass those values 
     //via the call_user_func_array. 
-    $this->params = $url ? array_values($url) : [];
-    call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+    call_user_func([$this->currentController, $this->currentMethod]);
   }
 
   public function getUrl()
