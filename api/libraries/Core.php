@@ -45,8 +45,7 @@ class Core
       $url = explode('/', $url);
       return $url;
     } else {
-      $url[0] = 'Pages';
-      return $url;
+      echo json_encode("Something Went Wrong");
     }
   }
 }
