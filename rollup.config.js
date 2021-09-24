@@ -11,6 +11,7 @@ import replace from 'rollup-plugin-replace';
 //Change depending on enviornment.
 const devEnviornment = true; 
 dotenv.config({path: devEnviornment ? './.env':'./production/.env'});
+
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
