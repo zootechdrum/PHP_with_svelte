@@ -1,34 +1,46 @@
 <script>
+        async function verifyCredentials() {
+            const res = await fetch("http://localhost/svel/api/index.php?url=Users/index", {
+                headers:{'Content-Type': 'application/json'},
+                method:'GET',
+            })
+            const json = await res.json();
+            console.log(json);
+        }
+
 
 </script>
 
 
 <div class="container">
-    <div class="login-card">
-        <div>
-            <img class="fleetwood-logo" src="./img/fleetwood-logo.png" alt="fleetwood-logo">
+    <form on:submit|preventDefault={verifyCredentials}>
+        <div class="login-card">
+            <div>
+                <img class="fleetwood-logo" src="./img/fleetwood-logo.png" alt="fleetwood-logo">
+            </div>
+            <h1 class="login-card-title">SNAPCLOUD </h1>
+            <div class="cloud-container">
+                <img class="snap-cloud-icon" src="./img/cloud.png" alt="icon of a cloud">
+            </div>
+            <div class="input-container">
+            <div class="field">
+                <input type="text" id="name">
+                <label for="name">username:</label>
+            </div>
+            <div class="field">
+                <input type="password" id="password">
+                <label for="password">password:</label>
+            </div>
+            </div>
+            <div>
+                <button class="submit-button" type="submit">Sign in</button>
+            </div>
         </div>
-        <h1 class="login-card-title">SNAPCLOUD </h1>
-        <div class="cloud-container">
-            <img class="snap-cloud-icon" src="./img/cloud.png" alt="icon of a cloud">
-        </div>
-        <div class="input-container">
-        <div class="field">
-            <input type="text">
-            <label for="name">username:</label>
-            <div class="line"></div>
-        </div>
-        <div>
-            <input type="text" placeholder="Password">
-        </div>
-        </div>
-        <div>
-            <button class="submit-button" type="submit">Sign in</button>
-        </div>
-    </div>
+    </form>
 </div>
 
-<style>
+<style type="text/scss">
+    @import '../styles/vars.scss';
   .container {
       font-family:'Oswald', sans-serif;
       font-weight: 200;
@@ -40,13 +52,13 @@
       display:flex;
   }
   .submit-button {
-      margin-top:10%;
+      margin-top:14%;
       width:70%;
       text-transform: uppercase;
       font-size: 22px;
       letter-spacing: 2px;
-      background-color:rgba(30,71,146,1);
-      border-color:rgba(30,71,146,1)
+      background-color: $fleetwood-blue;
+      border-color: $fleetwood-blue;
   }
   .input-container {
       height:15%;
@@ -71,28 +83,30 @@
       text-align: center;
       flex-direction:column;
       display:flex;
-      height:700px;
+      height:650px;
       padding:20px;
       box-sizing:border-box;
       border:1px solid rgba(0,0,0,0.5);
-      width:500px;
+      width:30rem;
       color:rgba(255,255,255,0.3);
       min-width:445px;
-      box-shadow: 3px 50px 30px rgba(0,75,117,0.25);
+      box-shadow: $box-shadow-val;
       }
       .login-card-title {
           color:rgba(0,0,0,0.5);
           font-weight: 200;
           letter-spacing: 3px;
       }
-      input[type=text] {
+      input[type=text], input[type=password] {
           border:none;
           border-bottom: 2px solid black;
           width:70%;
+          background: transparent;
       }
       input:focus {
           outline:none;
           padding-bottom:5px;
+          border-bottom:2px solid $input-btm-brd-color;
       }
       .field {
           position:relative;
@@ -103,18 +117,22 @@
           top:0;
           left:15%;
           color:#000;
-          transition: 0.2s all;
+          transition: 0.3s all;
           cursor:text;
           font-weight: 300;
           letter-spacing: 1px;
           text-transform: uppercase;
-          font-size: 13px;;
+          font-size: 14px;
+          transition: 0.2s all;
+          z-index:-1;
       }
       input:focus~label {
           font-size:12px;
           top:-24px;
           color:#7F3356;
-          /* color:rgba(30,71,146,1); */
+      }
+      input:-webkit-autofill {
+          height: 25px;
       }
       input::placeholder {
           letter-spacing: 1px;
@@ -125,6 +143,4 @@
       .field {
           position:relative;
       }
-
-
 </style>
